@@ -62,7 +62,7 @@ test("Should add an item to the store and re-run the effect", () => {
   );
 });
 
-test("Should add and delete an item to the store", () => {
+test("Should add and delete an item to the store", (currentItems: Kanban) => {
   const selector = (store: Kanban) => ({
     tasks: store.tasks,
     addTask: store.addTask,
@@ -70,7 +70,6 @@ test("Should add and delete an item to the store", () => {
   });
 
   let createdTask: boolean = false;
-  let currentItems: Kanban;
   const effect = vi.fn().mockImplementation((items: Kanban) => {
     currentItems = items;
     if (!createdTask) {
