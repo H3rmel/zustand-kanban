@@ -18,6 +18,13 @@ export const useKanban = create<Kanban>(
             tasks: [...state.tasks, newTask],
           }));
         },
+        editTask: (taskId: number, updatedTask: Task) => {
+          set((state: Kanban) => ({
+            tasks: state.tasks.map((task: Task) =>
+              task.id === taskId ? { ...task, ...updatedTask } : task
+            ),
+          }));
+        },
         deleteTask: (taskId: number) => {
           set((state: Kanban) => ({
             tasks: state.tasks.filter((task: Task) => task.id !== taskId),

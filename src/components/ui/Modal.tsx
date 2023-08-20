@@ -33,13 +33,18 @@ export const Modal = ({ children, modalCloseRef, id }: ModalProps) => {
 interface ModalTriggerProps {
   id: string;
   className?: string;
+  children: React.ReactNode;
 }
 
-export const ModalTrigger = ({ id, className }: ModalTriggerProps) => {
+export const ModalTrigger = ({
+  id,
+  className,
+  children,
+}: ModalTriggerProps) => {
   return (
     <>
-      <label htmlFor={id} className={`btn btn-primary ${className}`}>
-        Criar task
+      <label htmlFor={id} className={className}>
+        {children}
       </label>
       <input type="checkbox" id={id} className="modal-state" />
     </>

@@ -16,6 +16,7 @@ declare global {
     tasks: Task[] | [];
     draggedTask: number | null;
     addTask: (task: Task) => void;
+    editTask: (taskId: number, updatedTask: Task) => void;
     deleteTask: (taskId: number) => void;
     setDraggedTask: (taskId: number | null) => void;
     moveTask: (taskId: number, newState: string) => void;

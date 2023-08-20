@@ -20,9 +20,11 @@ export const App = () => {
     state: "",
   });
 
-  const modalCloseRef = useRef<HTMLLabelElement>(null);
+  const modalAddCloseRef = useRef<HTMLLabelElement>(null);
 
   const { addTask } = useKanban();
+
+  //#region Methods
 
   const handleChange = (
     event: ChangeEvent<
@@ -32,12 +34,12 @@ export const App = () => {
     updateState(event, setNewTask);
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleAddSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     addTask(newTask);
 
-    modalCloseRef.current!.click();
+    modalAddCloseRef.current!.click();
     setNewTask({
       id: new Date().getTime(),
       title: "",
@@ -46,6 +48,8 @@ export const App = () => {
     });
   };
 
+  //#endregion
+
   return (
     <main className="flex w-full min-h-screen overflow-y-hidden">
       <section className="w-[20%] py-4 border-r border-r-slate-300/10">
@@ -53,13 +57,15 @@ export const App = () => {
           <span className="pl-4">Zustand Kanban</span>
         </h1>
         <div className="p-4">
-          <ModalTrigger id="modal-createTask" />
-          <Modal modalCloseRef={modalCloseRef} id="modal-createTask">
+          <ModalTrigger id="modal-createTask" className="btn btn-primary">
+            Criar task
+          </ModalTrigger>
+          <Modal modalCloseRef={modalAddCloseRef} id="modal-createTask">
             <ModalHeader
               title="Adicionar tarefa!"
               description="Preencha os campos para adicionar."
             />
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+            <form onSubmit={handleAddSubmit} className="flex flex-col gap-4">
               <div className="flex flex-col gap-4">
                 <input
                   type="text"

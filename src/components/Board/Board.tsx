@@ -1,4 +1,4 @@
-import { Column } from './Column'
+import { Column } from "./Column";
 
 export const Board = () => {
   return (
@@ -7,5 +7,5 @@ export const Board = () => {
       <Column title="DOING" state="DOING" />
       <Column title="DONE" state="DONE" />
     </section>
-  )
-}
+  );
+};
